@@ -7,7 +7,7 @@ currentBuild.displayName = "Final_Demo # "+currentBuild.number
         
 
 pipeline{
-        agent any
+        agent linux_slave
         environment{
 	    Docker_tag = getDockerTag()
         }
@@ -18,7 +18,7 @@ pipeline{
               stage('Quality Gate Statuc Check'){
 
                 agent {
-                label 'linux-slave'
+                label 'linux_slave'
                     }
                 steps{
                       script{
