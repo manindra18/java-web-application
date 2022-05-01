@@ -7,7 +7,7 @@ currentBuild.displayName = "Final_Demo # "+currentBuild.number
         
 
 pipeline{
-        agent any  
+        agent any
         environment{
 	    Docker_tag = getDockerTag()
         }
@@ -17,13 +17,10 @@ pipeline{
 
               stage('Quality Gate Statuc Check'){
 
-               agent {
-                linux-slave {
-                image 'maven'
-                args '-v $HOME/.m2:/root/.m2'
-                }
-            }
-                  steps{
+                agent {
+                label 'linux-slave'
+                    }
+                steps{
                       script{
                       withSonarQubeEnv('sonarserver') { 
                       sh "mvn sonar:sonar"
