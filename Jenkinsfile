@@ -7,7 +7,9 @@ currentBuild.displayName = "Final_Demo # "+currentBuild.number
         
 
 pipeline{
-        agent linux_slave
+        agent {
+        label 'linux_slave'
+        }
         environment{
 	    Docker_tag = getDockerTag()
         }
